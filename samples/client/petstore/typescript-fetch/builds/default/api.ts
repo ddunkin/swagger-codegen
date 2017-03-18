@@ -33,7 +33,7 @@ export class BaseAPI {
     fetch: FetchAPI;
     public configuration: Configuration;
 
-    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH, configuration: Configuration = new Configuration()) {
+    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH, configuration: Configuration = {}) {
         this.basePath = basePath;
         this.fetch = fetch;
         this.configuration = configuration;
@@ -276,9 +276,9 @@ export const PetApiFetchParamCreator = {
             fetchOptions.headers = contentTypeHeader;
         }
         // authentication (api_key) required
-        if (configuration.apiKey && configuration.apiKey.api_key) {
+        if (configuration.apiKey) {
             fetchOptions.headers = assign({
-                    "api_key": configuration.apiKey.api_key,
+                    "api_key": configuration.apiKey,
                     }, contentTypeHeader);
         }
 
@@ -745,9 +745,9 @@ export const StoreApiFetchParamCreator = {
             fetchOptions.headers = contentTypeHeader;
         }
         // authentication (api_key) required
-        if (configuration.apiKey && configuration.apiKey.api_key) {
+        if (configuration.apiKey) {
             fetchOptions.headers = assign({
-                    "api_key": configuration.apiKey.api_key,
+                    "api_key": configuration.apiKey,
                     }, contentTypeHeader);
         }
 

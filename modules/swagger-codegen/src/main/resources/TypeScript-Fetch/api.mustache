@@ -24,7 +24,7 @@ export class BaseAPI {
     fetch: FetchAPI;
     public configuration: Configuration;
 
-    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH, configuration: Configuration = new Configuration()) {
+    constructor(fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH, configuration: Configuration = {}) {
         this.basePath = basePath;
         this.fetch = fetch;
         this.configuration = configuration;
@@ -124,16 +124,16 @@ export const {{classname}}FetchParamCreator = {
         // authentication ({{name}}) required
 {{#isApiKey}}
 {{#isKeyInHeader}}
-        if (configuration.apiKey && configuration.apiKey.{{keyParamName}}) {
+        if (configuration.apiKey) {
             fetchOptions.headers = {{#supportsES6}}Object.{{/supportsES6}}assign({
-                    "{{keyParamName}}": configuration.apiKey.{{keyParamName}},
+                    "{{keyParamName}}": configuration.apiKey,
                     }, contentTypeHeader);
         }
 {{/isKeyInHeader}}
 {{#isKeyInQuery}}
-        if (configuration.apiKey && configuration.apiKey.{{keyParamName}}) {
+        if (configuration.apiKey) {
             urlObj.query = {{#supportsES6}}Object.{{/supportsES6}}assign({}, urlObj.query, {
-                    "{{keyParamName}}": configuration.apiKey.{{keyParamName}},
+                    "{{keyParamName}}": configuration.apiKey,
                     });
         }
 {{/isKeyInQuery}}

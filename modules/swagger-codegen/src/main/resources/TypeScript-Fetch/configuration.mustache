@@ -1,12 +1,6 @@
-export class Configuration {
-    apiKey: {
-{{#authMethods}}
-{{#isApiKey}}
-        {{keyParamName}}: string;
-{{/isApiKey}}
-{{/authMethods}}
-    };
-    username: string;
-    password: string;
-    accessToken: string;
+export interface Configuration {
+    apiKey?: string;
+    username?: string;
+    password?: string;
+    accessToken?: string;
 }
